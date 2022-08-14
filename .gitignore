@@ -1,0 +1,15 @@
+*/bin/*
+.nuxt
+dist
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+node_modules/
+jspm_packages/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
