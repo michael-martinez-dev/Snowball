@@ -6,7 +6,7 @@ APP_VERSION=v0.3.0
 build:
 	wails build
 
-run:
+run: build
 	./build/bin/${APP_NAME}.exe
 
 dev:
