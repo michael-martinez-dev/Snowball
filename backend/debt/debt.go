@@ -66,6 +66,19 @@ func (d *Debt) GetTotalDebtAmount() float64 {
 	return total
 }
 
+// GetTotalMonthlyDebtAmount
+func (d *Debt) GetTotalMonthlyDebtAmount() float64 {
+	total := float64(0)
+	for _, debtItem := range d.debtItems {
+		itemTotal, err := strconv.ParseFloat(debtItem.Monthly, 64)
+		if err != nil {
+			continue
+		}
+		total += itemTotal
+	}
+	return total
+}
+
 // UpdateDebtItem
 func (d *Debt) UpdateDebtItem(name, debtType, total, monthly, due string) {
 	log.Debug("Updating %s...\n", name)

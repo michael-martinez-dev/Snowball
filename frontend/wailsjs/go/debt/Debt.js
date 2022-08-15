@@ -14,6 +14,10 @@ export function GetTotalDebtAmount() {
   return window['go']['debt']['Debt']['GetTotalDebtAmount']();
 }
 
+export function GetTotalMonthlyDebtAmount() {
+  return window['go']['debt']['Debt']['GetTotalMonthlyDebtAmount']();
+}
+
 export function SubmitDebtItem(arg1, arg2, arg3, arg4, arg5) {
   return window['go']['debt']['Debt']['SubmitDebtItem'](arg1, arg2, arg3, arg4, arg5);
 }

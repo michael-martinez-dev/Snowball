@@ -41,10 +41,11 @@
     padding: 0 8px;
     cursor: pointer;
     align-items: center;
+    background-color: #999;
 }
 
 .input-box .btn:hover {
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background-image: linear-gradient(to top, rgb(0, 150, 0) 0%, rgb(0, 230, 0) 100%);
     color: #333333;
 }
 
@@ -63,12 +64,12 @@
 
 .input-box .input:hover {
     border: none;
-    background-color: rgba(230, 230, 230, 1);
+    background-color: rgba(210, 210, 210, 1);
 }
 
 .input-box .input:focus {
     border: none;
-    background-color: rgba(230, 230, 230, 1);
+    background-color: rgba(210, 210, 210, 1);
 }
 
 .input-box .err {

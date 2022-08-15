@@ -1,21 +1,27 @@
 import React, {useEffect, useState} from 'react';
 import './Debt.css'
-import {DeleteDebtItem, GetDebt, GetTotalDebtAmount, SubmitDebtItem} from "../../wailsjs/go/debt/Debt";
+import {DeleteDebtItem, GetDebt, GetTotalDebtAmount, GetTotalMonthlyDebtAmount, SubmitDebtItem} from "../../wailsjs/go/debt/Debt";
 
 function Debt() {
     const [debt, setDebt]           = useState([]);
     const [debtTotal, setDebtTotal] = useState(0.0)
+    const [monthlyDebtTotal, setMonthlyDebtTotal] = useState(0.0)
     const updateDebt      = (result) => setDebt(result)
     const updateDebtTotal = (result) => setDebtTotal(result)
+    const updateMonthlyDebtTotal = (result) => setMonthlyDebtTotal(result)
     const getDebt         = () => GetDebt()
                                     .then(updateDebt)
                                     .catch(console.error)
     const getDebtTotal = () => GetTotalDebtAmount()
                                     .then(updateDebtTotal)
                                     .catch(console.error)
+    const getMonthlyDebtTotal = () => GetTotalMonthlyDebtAmount()
+                                    .then(updateMonthlyDebtTotal)
+                                    .catch(console.error)
     useEffect(() => {
         getDebt()
         getDebtTotal()
+        getMonthlyDebtTotal()
     }, [])
 
     const [name, setName]           = useState('');
@@ -81,6 +87,7 @@ function Debt() {
         DeleteDebtItem(name)
         getDebt()
         getDebtTotal()
+        getMonthlyDebtTotal()
     }
 
     function onRowClick(rName, rDebtType, rTotal, rMonthly, rDue) {
@@ -89,6 +96,7 @@ function Debt() {
         document.getElementById("total").value = rTotal;
         document.getElementById("monthly").value = rMonthly;
         document.getElementById("due").value = rDue;
+
         setName(rName);
         setType(rDebtType);
         setTotal(rTotal);
@@ -107,6 +115,7 @@ function Debt() {
                         <th>Total</th>
                         <th>Monthly</th>
                         <th>Post-Payment</th>
+                        <th>Payments Left</th>
                         <th>Due</th>
                     </tr>
                     </thead>
@@ -127,7 +136,8 @@ function Debt() {
                                     <td>${parseFloat(debtItem.total).toLocaleString('en-US')}</td>
                                     <td>${parseFloat(debtItem.monthly).toLocaleString('en-US')}</td>
                                     <td>${(parseFloat(debtItem.total) - parseFloat(debtItem.monthly)).toLocaleString('en-US')}</td>
-                                    <td>{debtItem.due}</td>
+                                    <td>{Math.ceil(parseFloat(debtItem.total) / parseFloat(debtItem.monthly))}</td>
+                                    <td style={(debtItem.due > (new Date().getDate()))? {color: "black", fontSize: "bold"} : {color: "#DDD"}}>{debtItem.due}</td>
                                     <td className="delete" onClick={()=>{deleteDebt(debtItem.name)}}><button>Delete</button></td>
                                 </tr>
                             )
@@ -135,7 +145,8 @@ function Debt() {
                     }
                     </tbody>
                 </table>
-                <h3 style={{float: "left", paddingLeft: "20px", paddingRight: "10px"}}> Total: </h3><h4 style={{color: "red", float: "left"}}>${debtTotal.toLocaleString('en-US')}</h4>
+                <h3 style={{float: "left", paddingLeft: "20px", paddingRight: "10px"}}> Total: </h3><h4 style={{color: "rgb(190,0,0)", float: "left"}}>- ${debtTotal.toLocaleString('en-US')}</h4>
+                <h3 style={{float: "left", paddingLeft: "20px", paddingRight: "10px"}}> Monthly Total: </h3><h4 style={{color: "rgb(190,0,0)", float: "left"}}>- ${monthlyDebtTotal.toLocaleString('en-US')}</h4>
             </div>
         <div id="input" className="input-box">
             <br />
