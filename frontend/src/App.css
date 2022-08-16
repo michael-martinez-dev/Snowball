@@ -44,8 +44,26 @@
     background-color: #999;
 }
 
+.input-box .btn2 {
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 3px;
+    border: none;
+    margin: 0 0 0 20px;
+    padding: 0 8px;
+    cursor: pointer;
+    align-items: center;
+    background-color: #999;
+}
+
 .input-box .btn:hover {
     background-image: linear-gradient(to top, rgb(0, 150, 0) 0%, rgb(0, 230, 0) 100%);
+    color: #333333;
+}
+
+.input-box .btn2:hover {
+    background-image: linear-gradient(to top, rgb(150, 0, 0) 0%, rgb(230, 0, 0) 100%);
     color: #333333;
 }
 

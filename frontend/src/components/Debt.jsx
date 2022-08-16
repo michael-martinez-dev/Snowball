@@ -66,10 +66,22 @@ function Debt() {
         SubmitDebtItem(name, debtType, total, monthly, due)
             .then(() => {
                 getDebt()
-                getDebtTotal()
+                getDebtTotal();
+                getMonthlyDebtTotal();
             })
             .catch((err) => {setSubmitErr(err);});
 
+        clearForm();
+    }
+
+    function deleteDebt(name) {
+        DeleteDebtItem(name);
+        getDebt();
+        getDebtTotal();
+        getMonthlyDebtTotal();
+    }
+
+    function clearForm() {
         document.getElementById("name").value = "";
         document.getElementById("total").value = "";
         document.getElementById("monthly").value = "";
@@ -80,14 +92,6 @@ function Debt() {
         setTotal('');
         setMonthly('');
         setDue('');
-    }
-
-    function deleteDebt(name) {
-        console.log("Deleting " + name + "...")
-        DeleteDebtItem(name)
-        getDebt()
-        getDebtTotal()
-        getMonthlyDebtTotal()
     }
 
     function onRowClick(rName, rDebtType, rTotal, rMonthly, rDue) {
@@ -167,6 +171,7 @@ function Debt() {
             <h5>Due Day</h5>
             <input id="due" className="input" onChange={updateDue} autoComplete="off" name="input" type="number" min="1" max="30"/>
             <br /><br />
+            <button className="btn2" onClick={clearForm}>Clear</button>
             <button className="btn" onClick={submitForm}>Submit</button>
         </div>
         </div>
