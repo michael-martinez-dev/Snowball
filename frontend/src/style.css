@@ -1,5 +1,10 @@
 html {
     background-color: rgb(255, 255, 255);
+    background-image: url("./src/assets/images/ice-background.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
     text-align: center;
     color: white;
 }
