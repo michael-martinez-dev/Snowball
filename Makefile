@@ -13,9 +13,7 @@ dev:
 	wails dev
 
 prod:
-	wails build -platform windows -o ${APP_NAME}-${APP_VERSION}.exe -upx -race
-	wails build -platform darwin -o ${APP_NAME}-${APP_VERSION} -upx -race
-	wails build -platform linux -o ${APP_NAME}-${APP_VERSION} -upx -race
+	wails build -platform windows -o ${APP_NAME}-${APP_VERSION}.exe -upx -race -nsis
 
 clean:
 	rm -f ./build/bin/${APP_NAME}-${APP_VERSION}*
