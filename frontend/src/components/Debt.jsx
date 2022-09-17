@@ -83,12 +83,14 @@ function Debt() {
 
     function clearForm() {
         document.getElementById("name").value = "";
+        document.getElementById("sType").value = "";
         document.getElementById("total").value = "";
         document.getElementById("monthly").value = "";
         document.getElementById("due").value = "";
 
         setSubmitErr('');
         setName('');
+        setType('');
         setTotal('');
         setMonthly('');
         setDue('');
@@ -150,7 +152,8 @@ function Debt() {
                     </tbody>
                 </table>
                 <h3 style={{float: "left", paddingLeft: "20px", paddingRight: "10px"}}> Total: </h3><h4 style={{color: "rgb(190,0,0)", float: "left"}}>- ${debtTotal.toLocaleString('en-US')}</h4>
-                <h3 style={{float: "left", paddingLeft: "20px", paddingRight: "10px"}}> Monthly Total: </h3><h4 style={{color: "rgb(190,0,0)", float: "left"}}>- ${monthlyDebtTotal.toLocaleString('en-US')}</h4>
+                <h3 style={{float: "left", paddingLeft: "20px", paddingRight: "10px"}}> Total Monthly: </h3><h4 style={{color: "rgb(190,0,0)", float: "left"}}>- ${monthlyDebtTotal.toLocaleString('en-US')}</h4>
+                <h3 style={{float: "left", paddingLeft: "20px", paddingRight: "10px"}}> Total Payments Left: </h3><h4 style={{color: "rgb(190,0,0)", float: "left"}}> {Math.ceil(debtTotal/monthlyDebtTotal)}</h4>
             </div>
         <div id="input" className="input-box">
             <br />
