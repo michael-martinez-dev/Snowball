@@ -19,10 +19,10 @@ func main() {
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:            "debt-snowball",
-		Height:           700,
-		MinHeight:        600,
-		Width:            1000,
-		MinWidth:         968,
+		Height:           800,
+		MinHeight:        750,
+		Width:            1200,
+		MinWidth:         1000,
 		Assets:           assets,
 		BackgroundColour: &options.RGBA{R: 0, G: 0, B: 0, A: 1},
 		OnStartup:        app.startup,

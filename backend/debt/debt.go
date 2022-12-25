@@ -25,22 +25,24 @@ func NewDebt() *Debt {
 }
 
 // SubmitDebtItem
-func (d *Debt) SubmitDebtItem(name, debtType, total, monthly, due string) {
+func (d *Debt) SubmitDebtItem(name, debtType, link, total, monthly, due, interest string) {
 	if name == "" {
 		log.Error("Debt item must have a name")
 		return
 	}
 	if d.findDebtItem(name) {
-		d.UpdateDebtItem(name, debtType, total, monthly, due)
+		d.UpdateDebtItem(name, debtType, link, total, monthly, due, interest)
 		return
 	}
 	d.debtItems = append(d.debtItems,
 		*NewDebtItem(
 			name,
 			debtType,
+			link,
 			total,
 			monthly,
 			due,
+			interest,
 		),
 	)
 	Save(d.storage, d.debtItems)
@@ -80,16 +82,18 @@ func (d *Debt) GetTotalMonthlyDebtAmount() float64 {
 }
 
 // UpdateDebtItem
-func (d *Debt) UpdateDebtItem(name, debtType, total, monthly, due string) {
+func (d *Debt) UpdateDebtItem(name, debtType, link, total, monthly, due, interest string) {
 	log.Debug("Updating %s...\n", name)
 	for idx, debtItem := range d.debtItems {
 		if debtItem.Name == name {
 			d.debtItems[idx] = *NewDebtItem(
 				name,
 				debtType,
+				link,
 				total,
 				monthly,
 				due,
+				interest,
 			)
 		}
 	}

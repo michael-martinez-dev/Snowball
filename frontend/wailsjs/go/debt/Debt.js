@@ -18,10 +18,10 @@ export function GetTotalMonthlyDebtAmount() {
   return window['go']['debt']['Debt']['GetTotalMonthlyDebtAmount']();
 }
 
-export function SubmitDebtItem(arg1, arg2, arg3, arg4, arg5) {
-  return window['go']['debt']['Debt']['SubmitDebtItem'](arg1, arg2, arg3, arg4, arg5);
+export function SubmitDebtItem(arg1, arg2, arg3, arg4, arg5, arg6, arg7) {
+  return window['go']['debt']['Debt']['SubmitDebtItem'](arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 }
 
-export function UpdateDebtItem(arg1, arg2, arg3, arg4, arg5) {
-  return window['go']['debt']['Debt']['UpdateDebtItem'](arg1, arg2, arg3, arg4, arg5);
+export function UpdateDebtItem(arg1, arg2, arg3, arg4, arg5, arg6, arg7) {
+  return window['go']['debt']['Debt']['UpdateDebtItem'](arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 }
