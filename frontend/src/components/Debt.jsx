@@ -91,8 +91,9 @@ function Debt() {
         setInterest('');
     }
 
-    function onRowClick(rName, rDebtType, rTotal, rInterest, rMonthly, rDue) {
+    function onRowClick(rName, rLink, rDebtType, rTotal, rInterest, rMonthly, rDue) {
         document.getElementById("name").value = rName;
+        document.getElementById("link").value = rLink;
         document.getElementById("sType").value = rDebtType;
         document.getElementById("total").value = rTotal;
         document.getElementById("interest").value = rInterest;
@@ -100,6 +101,7 @@ function Debt() {
         document.getElementById("due").value = rDue;
 
         setName(rName);
+        setLink(rLink);
         setType(rDebtType);
         setTotal(rTotal);
         setInterest(rInterest);
@@ -119,7 +121,7 @@ function Debt() {
         } else {
             amountLeft = total - monthly;
         }
-        return amountLeft.toLocaleString('en-US');
+        return amountLeft.toFixed(2).toLocaleString('en-US');
     }
 
     return (
@@ -146,6 +148,7 @@ function Debt() {
                                 <tr id={debtItem.name} key={index} onClick={()=>{
                                     onRowClick(
                                         debtItem.name,
+                                        debtItem.link,
                                         debtItem.type,
                                         debtItem.total,
                                         debtItem.interest,
@@ -167,6 +170,13 @@ function Debt() {
                     }
                     </tbody>
                 </table>
+                <div>
+                    <h3>Notes:</h3>
+                    <p>- Link is optional. You must include the "https://" in the link.</p>
+                    <p>- Interest is optional. If you don't know the interest rate, leave it blank.</p>
+                    <p>- Post payment is based off interest rate if supplied and uses formula: total + (total * interest / 12)</p>
+                    <p>- Payments left doesn't account for interest</p>
+                </div>
                 <div class="totals" style={{position: "fixed", backgroundColor: "white", width: "100%", bottom: 0, height: "10%"}}>
                     <h3 style={{float: "left", paddingLeft: "20px", paddingRight: "10px"}}> Total: </h3><h4 style={{color: "rgb(190,0,0)", float: "left"}}>- ${debtTotal.toLocaleString('en-US')}</h4>
                     <h3 style={{float: "left", paddingLeft: "20px", paddingRight: "10px"}}> Total Monthly: </h3><h4 style={{color: "rgb(190,0,0)", float: "left"}}>- ${monthlyDebtTotal.toLocaleString('en-US')}</h4>

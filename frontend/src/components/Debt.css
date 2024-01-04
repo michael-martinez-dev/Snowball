@@ -126,6 +126,7 @@ delete {
 .data-table {
     width: 75%;
     float: left;
+	margin-bottom: 10%;
 }
 
 .input-box {
